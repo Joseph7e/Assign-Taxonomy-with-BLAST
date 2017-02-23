@@ -1,14 +1,12 @@
 #!/usr/bin/python3
+#Author: Joseph Sevigny
+#Affiliation: Hubbard Center for Genome Studies, University of New Hampshire
+#Date: 02/23/2017
 
 import sys, re, os, subprocess, argparse
 from Bio import SeqIO
 
-#INPUT_FILES and GLOBALS.
-#SET THESE TO THE CORRECT PATH
 
-#tax_file = '/genome/joseph7e/databases/SILVA123_QIIME_release/taxonomy/18S_only/99/taxonomy_all_levels.txt'#sys.argv[3]
-#blast_database = '/genome/joseph7e/databases/SILVA123_QIIME_release/rep_set/rep_set_18S_only/99/database'#sys.argv[2]
-##SYS ARGUMENTS
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
 #OPTIONAL ARGUMENTS
@@ -136,7 +134,6 @@ for key, value in otu_dictionary.items(): #could make this a little better than 
     otu_sequences_output_handle.writelines('>'+key+'\n' + sequence_dict[value[0]].seq+'\n')
 
 
-#CREATE A BETTER WAY TO PICK OTU SEEDS UPUPUPUPUPUUP
 
 #parse taxonomy file
 
@@ -169,12 +166,7 @@ else:
 
 
 ####PARSE BLAST and ASSIGN TAXONOMY#######
-
-#make anything that has uncultured or unidentified in the name equal unknown and make that unusable for assignment
-#add option to rely on bitscore when picking best hit
 #make so assignment avoids one mis when the rest agree
-### ADD EACH BLAST HIT TO A DICTIONARY FOR THE QUERY AND PARSE AFTER THAT
-
 
 if args.verbose:
     print ('Parsing Blast and Assigning Taxonomy')
