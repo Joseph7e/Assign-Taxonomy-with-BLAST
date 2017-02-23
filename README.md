@@ -3,7 +3,8 @@ This script can be used for any standard multi-fasta.
 Will work on any database, including custom ones or ncbi's nt database.
 A path to taxonomy classifications is required but several precomputed are available here.
 
-
+# DOING YOUR OWN BLAST??
+use this as -outfmt '6 qseqid qlen sseqid pident length qstart qend sstart send evalue bitscore staxids'
 
 
 # Dependencies
@@ -27,8 +28,6 @@ SILVAs taxonomy databases are available at SILVA link above
 
 ## INSTALLATION
 Just download the script, thats it.
-
-
 
 
 # How It Works
