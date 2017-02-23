@@ -5,7 +5,9 @@ A path to taxonomy classifications is required but several precomputed are avail
 
 
 # Dependencies
-###PYTHON3
+###Python3
+tested with Python 3.4.3
+
 modules: Biopython
 ### For commputing otus
 pick_otus.py
