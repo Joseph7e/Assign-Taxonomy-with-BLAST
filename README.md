@@ -12,23 +12,25 @@ modules: Biopython
 
 ### For commputing otus
 pick_otus.py
+
 http://qiime.org/scripts/pick_otus.html
 
 ### Databases
-ncbi's nt database: \n
+ncbi's nt database:
+
 SILVA 18S databases: https://www.arb-silva.de/download/archive/qiime/
 
 ### Taxonomy classifications
-ncbi taxa dump: expanded and customized for this program: AVAILABLE ON THIS GIT PAGE\n
+ncbi taxa dump: expanded and customized for this program: AVAILABLE ON THIS GIT FOR DOWNLOAD
+
 SILVAs taxonomy databases are available at SILVA link above
 
 
 ## INSTALLATION
 Just download the script, thats it.
 
-
 # How It Works
 ### DOING YOUR OWN BLAST??
-use this as -outfmt '6 qseqid qlen sseqid pident length qstart qend sstart send evalue bitscore staxids'
+use this -outfmt '6 qseqid qlen sseqid pident length qstart qend sstart send evalue bitscore staxids'
 
 
