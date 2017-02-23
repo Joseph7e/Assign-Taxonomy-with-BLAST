@@ -39,7 +39,8 @@ download from http://cobb.unh.edu/ncbi_taxonomy_expanded.tsv.gz
 ### OTU PICKING
 The first step is OTU picking. This is done to limit the number of time consuming blasts that need to be done.
 The default is to use qiimes otu_picking.py script which provides the correctly formatted otu_seqs.txt file.
-A seed sequence is chosen from the resulting OTU text file and used to represent that OTU (currently selecting the largest sequence belonging to that OTU cluster). Those seeds are the only sequences that are blasted.
+
+Next the program will choose a seed sequence from the resulting OTU text file, this seed will be used to represent that OTU (currently selecting the largest sequence belonging to that OTU cluster) and are the only sequences that are blasted.
 This often cuts the number of blasts down drastically. The original sequences can then be taxified based on the OTU seeds blast result.
 I WILL ADD AN OPTION TO AVOID OTU PICKING IN THE FUTURE IF REQUESTED.
 
@@ -51,24 +52,43 @@ It then computes the classification for each of these blast hits based on the be
 
 This aspect has many options, including setting the maximum number of blast hits to consider and the percent sway from the best blast hit. Blast hits are not all treated the same. If your blast provided 10 blast hits but only 5 of them are within 'percent_sway' the others will not be considered. For example, if one blast hit has a percent identity of 99% while the others are only 90%, only the top hit will be considered (unless of course you set the --percent_sway option to 9.0 or above). 
 
-In addition the program will mask blast hits that have a taxonomic assignment of uncultured, or unclassified. These hits will only be considered as a last resort.
-
 If you want to only consider the best blast hit, just set --hits_to_consider to '1'.
+
 
 #### Best taxonomy based on percent identity
 The program provides another level of taxonomic certainty based on the blast percentage. For example, if the best blast hit is 90% you can be fairly confident that you cannot provide the species of the organisms but maybe you can provide the phylum. Right now there are three levels that you can set with the program, --cutoff_species, --cutoff_family, and --cutoff_phylum. The phylum level cutoff is also used as an ultimate filter for the blast hits.
 
 Note: The consensus taxonomy usually does a pretty good job of weeding out incorrect taxonomy, setting all these cutoff values to 80 actually provides pretty great taxonomy in a lot of cases.
 
+If you want to only keep sequences that are identified to the species level, just set all cutoffs to '97' or '99'.
+
+#### Masking uncultured taxonomy
+By default the program will mask blast hits that have a taxonomic assignment of uncultured, or unclassified. These hits will only be considered as a last resort.
+
+
+#### Other blast options
+You have the option to set the minimum length coverage for the blast hit (defined by 'length of query'/'length of hit'). The default is 0.8. I like to be stringent here to avoid tiny insignificant blast hits.
+
 
 #### DOING YOUR OWN BLAST?? We will import that and save you the step.
-use this  -outfmt '6 qseqid qlen sseqid pident length qstart qend sstart send evalue bitscore staxids'
+use this format --> -outfmt '6 qseqid qlen sseqid pident length qstart qend sstart send evalue bitscore staxids'
 If running your own blast command make sure you run it with the out_seqs.fasta file. I have not added an option to input seqs.fna blast directly into qiime yet… but will if requested.
-
 
 
 #USAGE
 python3 taxonomy_assignment_BLAST.py [options] sequence_file blast_database taxonomy_file
 ### To see all options
 python3 taxonomy_assignment_BLAST.py -h
+
+# Info about required input formats
+
+### sequence_file
+### blast_database
+### taxonomy_file
+
+# Info about optional input files
+
+### blast_file
+### otu_file
+
 
