@@ -11,13 +11,14 @@ A path to taxonomy classifications for the database is required but several have
 tested with Python 3.4.3
 
 modules: Biopython
-### For commputing otus
+### For computing otus
 pick_otus.py
+#### other options coming soon
 
 http://qiime.org/scripts/pick_otus.html
 ### Databases
 ncbi's nt database: ftp://ftp.ncbi.nlm.nih.gov/blast/db/
-
+####To download this database
 mkdir ncbi_nt_database && cd ncbi_nt_database && wget 'ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt*.gz' && tar -xvf nt*
 
 SILVA 18S databases: https://www.arb-silva.de/download/archive/qiime/
@@ -29,6 +30,7 @@ SILVAs taxonomy databases are available at SILVA link above
 # INSTALLATION
 Download the script from above. Thats it.
 
+If you want the ncbi precomputed taxonomic file. wget '
 
 # How It Works
 
