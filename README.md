@@ -1,7 +1,7 @@
 # Assign-Taxonomy-with-BLAST
 This script can be used for any standard multi-fasta.
 Will work on any database, including custom ones or ncbi's nt database.
-A path to taxonomy classifications is required but several precommputed are available here.
+A path to taxonomy classifications is required but several precomputed are available here.
 
 
 
