@@ -5,7 +5,6 @@ A path to taxonomy classifications is required but several precomputed are avail
 
 
 # Dependencies
-not much
 ###PYTHON3
 modules: Biopython
 ### For commputing otus
@@ -23,6 +22,8 @@ SILVAs taxonomy databases are available at SILVA link above
 
 # INSTALLATION
 Just download the script, thats it.
+
+
 
 # How It Works
 
