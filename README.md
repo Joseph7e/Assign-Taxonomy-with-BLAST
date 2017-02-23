@@ -13,11 +13,11 @@ tested with Python 3.4.3
 modules: Biopython
 ### For computing otus
 pick_otus.py
-available here --> http://qiime.org/scripts/pick_otus.html
+available here: --> http://qiime.org/scripts/pick_otus.html
 #### other options coming soon
 
 ### Databases
-ncbi's nt database: ftp://ftp.ncbi.nlm.nih.gov/blast/db/
+ncbi's nt database: --> ftp://ftp.ncbi.nlm.nih.gov/blast/db/
 ####To download this database
 mkdir ncbi_nt_database && cd ncbi_nt_database && wget 'ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt*.gz' && tar -xvf nt*
 
@@ -32,7 +32,7 @@ Download the script from above. Thats it.
 
 If you want the ncbi precomputed taxonomic file. 
 
-download from http://cobb.unh.edu/ncbi_taxonomy_expanded.tsv.gz
+download from --> http://cobb.unh.edu/ncbi_taxonomy_expanded.tsv.gz
 
 # How It Works
 
