@@ -1,23 +1,35 @@
 # Assign-Taxonomy-with-BLAST
-Assign taxonomy for blast results, can be used for qiime
+This script can be used for any standard multi-fasta.
+Will work on any database, including custom ones or ncbi's nt database.
+A path to taxonomy classifications is required but several precommputed are available here.
 
 
 
 
-
-
-#Dependencies
-
-### For taxonomy assignment on ncbi nt database
-
+# Dependencies
+not much
+### PYTHON
+python3
+modules: Biopython
 
 ### For commputing otus
 pick_otus.py
-installation: see qiime webpage
+http://qiime.org/scripts/pick_otus.html
+
+### Databases
+ncbi's nt database:
+SILVA 18S databases:
+
+### Taxonomy classifications
+ncbi taxa dump expanded and customized for this program: AVAILABLE ON THIS GIT PAGE
+SILVAs taxonomy databases are available at SILVA link above
 
 
-##INSTALLATION
+## INSTALLATION
+Just download the script, thats it.
 
 
-#How It Works
+
+
+# How It Works
 
