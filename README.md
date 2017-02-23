@@ -12,7 +12,11 @@ pick_otus.py
 
 http://qiime.org/scripts/pick_otus.html
 ### Databases
-ncbi's nt database:
+ncbi's nt database: ftp://ftp.ncbi.nlm.nih.gov/blast/db/
+
+mkdir ncbi_nt_database && cd ncbi_nt_database
+
+tar -xvf nt*
 
 SILVA 18S databases: https://www.arb-silva.de/download/archive/qiime/
 ### Taxonomy classifications
