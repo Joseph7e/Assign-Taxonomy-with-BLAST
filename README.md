@@ -1,9 +1,9 @@
 # Assign-Taxonomy-with-BLAST
-This script is used for otu clustering, blasting, and ultamitly, assigning taxonomy.
+This script is used for otu clustering, blasting, and ultimately, assigning taxonomy.
 
 It can be used for any multi-fasta and should work on any database, including custom ones or ncbi's nt database.
 
-A path to taxonomy classifications for the database is required but several precomputed are available here.
+A path to taxonomy classifications for the database is required but several have already been precomputed and are available here.
 
 
 # Dependencies
@@ -18,9 +18,7 @@ http://qiime.org/scripts/pick_otus.html
 ### Databases
 ncbi's nt database: ftp://ftp.ncbi.nlm.nih.gov/blast/db/
 
-mkdir ncbi_nt_database && cd ncbi_nt_database
-
-tar -xvf nt*
+mkdir ncbi_nt_database && cd ncbi_nt_database && wget 'ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt*.gz' && tar -xvf nt*
 
 SILVA 18S databases: https://www.arb-silva.de/download/archive/qiime/
 ### Taxonomy classifications
@@ -62,6 +60,69 @@ Note: The consensus taxonomy usually does a pretty good job of weeding out incor
 
 #### DOING YOUR OWN BLAST?? We will import that and save you the step.
 use this  -outfmt '6 qseqid qlen sseqid pident length qstart qend sstart send evalue bitscore staxids'
-MAKE SURE THAT YOUR BLAST IS RUN WITH THE REP_OTU_SEQS.FASTA, I WILL ADD OPTION TO USE PRE-COMPUTED SEQS.FNA BLAST IN THE FUTURE.
+If running your own blast command make sure you run it with the out_seqs.fasta file. I have not added an option to input seqs.fna blast directly into qiime yet… but will if requested.
 
+
+
+#USAGE
+
+usage: taxonomy_assignment_BLAST.py [-h] [-v]
+                                    [--cutoff_species CUTOFF_SPECIES]
+                                    [--cutoff_family CUTOFF_FAMILY]
+                                    [--cutoff_phylum CUTOFF_PHYLUM]
+                                    [--length_percentage LENGTH_PERCENTAGE]
+                                    [--length_cutoff LENGTH_CUTOFF]
+                                    [--hits_to_consider HITS_TO_CONSIDER]
+                                    [--percent_sway PERCENT_SWAY]
+                                    [--otu_file OTU_FILE]
+                                    [--blast_file BLAST_FILE] [--ncbi_nt]
+                                    [--blast_evalue BLAST_EVALUE]
+                                    [--make_biom]
+                                    sequence_file blast_database tax_file
+
+positional arguments:
+  sequence_file         seqs.fna file from qiime or any multifasta, just make
+                        sure header has unique id with a space
+  blast_database        path tp blast database, be sure to run makeblastdb on
+                        the database first, type 'IGNORE' if precomputed blast
+                        is given
+  tax_file              path to silva or customized blast database taxonomy
+                        file
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --verbose         increase output verbosity (default: False)
+  --cutoff_species CUTOFF_SPECIES
+                        cutoff for finest taxonomic level (default: 97)
+  --cutoff_family CUTOFF_FAMILY
+                        cutoff for family taxonomic level (default: 90)
+  --cutoff_phylum CUTOFF_PHYLUM
+                        cutoff for phylum taxonomic level, also acts as
+                        ultimate cutoff value for blast (default: 80)
+  --length_percentage LENGTH_PERCENTAGE
+                        cutoff for query_hit/length_of_query i.e. query
+                        coverage (default: 0.8)
+  --length_cutoff LENGTH_CUTOFF
+                        primary cutoff for length of hit (default: 0)
+  --hits_to_consider HITS_TO_CONSIDER
+                        number of hits to consider when gathering consensus
+                        taxonomy (default: 5)
+  --percent_sway PERCENT_SWAY
+                        when comparing greater than 1 blast hit, value is the
+                        percent from best hit considered. i.e. if best blast
+                        hit is 99.5 ID, a value of 0.5 will consider
+                        everything 99 and greater when creating the consensus
+                        (default: 0.5)
+  --otu_file OTU_FILE   precomputed otu file, will run otu picking if not
+                        given (default: None)
+  --blast_file BLAST_FILE
+                        precomputed blast results, MUST BE MY CUSTOMIZED
+                        FORMAT, '6 qseqid qlen sseqid pident length qstart
+                        qend sstart send evalue bitscore' (default: None)
+  --ncbi_nt             flag for use of ncbi nt database (default: False)
+  --blast_evalue BLAST_EVALUE
+                        setting for e-value cutoff for blast, must be in form
+                        1e-X (default: 1e-10)
+  --make_biom           make a otu biom table using otus and taoxnomy
+                        assignments (default: False)
 
