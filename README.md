@@ -62,6 +62,8 @@ Note: The consensus taxonomy usually does a pretty good job of weeding out incor
 
 If you want to only keep sequences that are identified to the species level, just set all cutoffs to '97' or '99'.
 
+If you want to leave it to the consensus taxonomy to decide 'best estimated taxonomy', set all three cutoffs low, maybe '80'.
+
 #### Masking uncultured taxonomy
 By default the program will mask blast hits that have a taxonomic assignment of uncultured, or unclassified. These hits will only be considered as a last resort.
 
@@ -70,7 +72,7 @@ By default the program will mask blast hits that have a taxonomic assignment of 
 You have the option to set the minimum length coverage for the blast hit (defined by 'length of query'/'length of hit'). The default is 0.8. I like to be stringent here to avoid tiny insignificant blast hits.
 
 
-#### DOING YOUR OWN BLAST?? We will import that and save you the step.
+#### You already did YOUR OWN BLAST?? We will import that and save you the step. Just make sure the format is right.
 use this format --> -outfmt '6 qseqid qlen sseqid pident length qstart qend sstart send evalue bitscore staxids'
 If running your own blast command make sure you run it with the out_seqs.fasta file. I have not added an option to input seqs.fna blast directly into qiime yet… but will if requested.
 
