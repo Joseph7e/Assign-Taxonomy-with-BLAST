@@ -30,7 +30,9 @@ SILVAs taxonomy databases are available at SILVA link above
 # INSTALLATION
 Download the script from above. Thats it.
 
-If you want the ncbi precomputed taxonomic file. wget '
+If you want the ncbi precomputed taxonomic file. 
+
+wget 'http://cobb.unh.edu/ncbi_taxonomy_expanded.tsv.gz'
 
 # How It Works
 
