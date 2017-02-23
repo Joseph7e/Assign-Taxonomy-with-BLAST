@@ -1,9 +1,23 @@
 # Assign-Taxonomy-with-BLAST
-Assign taxonomy with blast, can be used for qiime
+Assign taxonomy for blast results, can be used for qiime
 
 
-##Dependencies
 
-### For taxonomy assignment for ncbi data
-ebe2 python module
-installation: pip3 install ete2
+
+
+
+#Dependencies
+
+### For taxonomy assignment on ncbi nt database
+
+
+### For commputing otus
+pick_otus.py
+installation: see qiime webpage
+
+
+##INSTALLATION
+
+
+#How It Works
+
