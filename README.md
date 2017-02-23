@@ -13,9 +13,9 @@ tested with Python 3.4.3
 modules: Biopython
 ### For computing otus
 pick_otus.py
+available here --> http://qiime.org/scripts/pick_otus.html
 #### other options coming soon
 
-http://qiime.org/scripts/pick_otus.html
 ### Databases
 ncbi's nt database: ftp://ftp.ncbi.nlm.nih.gov/blast/db/
 ####To download this database
