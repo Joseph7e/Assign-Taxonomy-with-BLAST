@@ -21,8 +21,8 @@ ncbi taxa dump: expanded and customized for this program: AVAILABLE ON THIS GIT 
 SILVAs taxonomy databases are available at SILVA link above
 
 # INSTALLATION
-Just download the script, thats it.
-
+Download the script from above (right click above link, copy link address)
+wget 
 
 
 # How It Works
