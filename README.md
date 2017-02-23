@@ -32,7 +32,7 @@ Download the script from above. Thats it.
 
 If you want the ncbi precomputed taxonomic file. 
 
-wget 'http://cobb.unh.edu/ncbi_taxonomy_expanded.tsv.gz'
+download from http://cobb.unh.edu/ncbi_taxonomy_expanded.tsv.gz
 
 # How It Works
 
