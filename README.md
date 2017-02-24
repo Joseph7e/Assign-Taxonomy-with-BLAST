@@ -20,23 +20,20 @@ pick_otus.py
 available here: --> http://qiime.org/scripts/pick_otus.html
 #### other options coming soon
 
-### Databases (not required)
+### Databases (use one of these or one of your own)
 ncbi's nt database: --> ftp://ftp.ncbi.nlm.nih.gov/blast/db/
-####To download this database
+#####To download this database
 mkdir ncbi_nt_database && cd ncbi_nt_database && wget 'ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt*.gz' && tar -xvf nt*
 
+
 SILVA 18S databases: https://www.arb-silva.de/download/archive/qiime/
+
 ### Taxonomy classifications (you will need one for your database)
-ncbi taxa dump: expanded and customized for this program: AVAILABLE ON THIS GIT FOR DOWNLOAD
+Customized taxonomy database for ncbi: --> http://cobb.unh.edu/ncbi_taxonomy_expanded.tsv.gz (make sure to gunzip it)
+
 
 SILVAs taxonomy databases: --> https://www.arb-silva.de/download/archive/qiime/
 
-# Installation
-Download the script from above. Thats it.
-
-If you want the ncbi precomputed taxonomic file download from --> http://cobb.unh.edu/ncbi_taxonomy_expanded.tsv.gz
-
-Then gunzip the file.
 
 # How It Works
 
