@@ -34,7 +34,7 @@ SILVAs taxonomy databases: --> https://www.arb-silva.de/download/archive/qiime/
 #
 # How It Works
 
-### OTU PICKING
+### OTU picking
 The first step is OTU picking. This is done to limit the number of time consuming blasts that need to be done, and for prepping the sequences for qiime.
 
 The default is to use uclust via the otu_picking.py script, which provides the correctly formatted otu_seqs.txt file.
