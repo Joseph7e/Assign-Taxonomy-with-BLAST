@@ -21,7 +21,7 @@ parser.add_argument("--hits_to_consider", help="number of hits to consider when 
 parser.add_argument("--percent_sway", help="when comparing greater than 1 blast hit, value is the percent from best hit considered. i.e. if best blast hit is 99.5 ID, a value of 0.5 will consider everything 99 and greater when creating the consensus", type=float, default=0.5)
 parser.add_argument("--otu_file", help="precomputed otu file, will run otu picking if not given")
 parser.add_argument("--blast_file", help="precomputed blast results, MUST BE MY CUSTOMIZED FORMAT, '6 qseqid qlen sseqid pident length qstart qend sstart send evalue bitscore'")
-parser.add_argument("--ncbi_nt", help="flag for use of ncbi nt database", action="store_true")
+parser.add_argument("--ncbi_nt", help="REQUIRED flag for use of ncbi nt database", action="store_true")
 parser.add_argument("--blast_evalue", help="setting for e-value cutoff for blast, must be in form 1e-X", type=str, default="1e-10")
 parser.add_argument("--make_biom", help="make a otu biom table using otus and taoxnomy assignments", action="store_true")
 
