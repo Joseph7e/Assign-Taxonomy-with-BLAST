@@ -328,39 +328,7 @@ os.system("sort -k2 Assigned_Taxonomy/taxonomy_assignment_qiime_format.txt > Ass
 os.system("sort -t: -k4 Assigned_Taxonomy/taxonomy_assignment_per_sequence.txt > Assigned_Taxonomy/taxonomy_assignment2.txt && mv Assigned_Taxonomy/taxonomy_assignment2.txt Assigned_Taxonomy/taxonomy_assignment_per_sequence.txt")
 
 
-#Targeted Assignment
-
-# for otu, sequences in otu_dictionary.items():
-#     #print (sequences)
-#     for seq in sequences:
-#         if '__' in seq:
-#             group,seq_id = seq.split('__')
-#         else:
-#             group,seq_id = seq.split('_') #if two of these _ are in it
-#         output_line = group+':'+seq_id+':'+otu
-#         if otu in otu_taxonomy_dict.keys():
-#             #print (otu_taxonomy_dict[otu][1])
-#             if otu_taxonomy_dict[otu][3] == 'Metazoa_(Animalia)':
-#                 for taxonomy_level in otu_taxonomy_dict[otu]:
-#                     output_line += (':' + taxonomy_level)
-#
-#             elif otu_taxonomy_dict[otu][3] == 'Fungi':
-#                 output_line += (':Fungi'*12)
-#             else:
-#                 #BREAK INTO Taxonomic Groups
-#                 non_metazoa = ':non-metazoa'
-#                 output_line += ((':'+otu_taxonomy_dict[otu][1])+non_metazoa*11)
-#
-#         else:
-#             output_line += (':undetermined'*12)
-#
-#         with open(taxonomy_assignment_outfile,'a') as t:
-#             t.writelines(output_line+'\n')
-
-
-
-
-
+## construct biom table for qiime
 def make_otu_table(otu_file,taxonomy_file):
     '''makes otu_table for qiime'''
     output = 'otu_table.biom'
@@ -374,5 +342,7 @@ if args.make_biom:
         print ('Constructing OTU table for qiime')
     make_otu_table(otu_file, new_output_file)
 
+    
+#Done
 if args.verbose:
     print ('Process Complete. Have a nice day!')
