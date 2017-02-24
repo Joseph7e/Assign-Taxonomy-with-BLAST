@@ -8,33 +8,28 @@ A path to taxonomy classifications for the database is required but several have
 Many output files are generated. Several of which can be directly imported into qiime or qiime2 for visualization of taxonomy or other analyses.
 
 
-
-
 # Dependencies
 ###Python3
 tested with Python 3.4.3
-
 modules: Biopython
+#
 ### Programs for computing otus (currently required)
-pick_otus.py
-available here: --> http://qiime.org/scripts/pick_otus.html
-#### other options coming soon
-
+pick_otus.py: available here: --> http://qiime.org/scripts/pick_otus.html
+#
+other options coming soon
+#
 ### Databases (use one of these or one of your own)
 ncbi's nt database: --> ftp://ftp.ncbi.nlm.nih.gov/blast/db/
 #####To download this database
 mkdir ncbi_nt_database && cd ncbi_nt_database && wget 'ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt*.gz' && tar -xvf nt*
-
-
+#
 SILVA 18S databases: https://www.arb-silva.de/download/archive/qiime/
-
+#
 ### Taxonomy classifications (you will need one for your database)
 Customized taxonomy database for ncbi: --> http://cobb.unh.edu/ncbi_taxonomy_expanded.tsv.gz (make sure to gunzip it)
-
-
+#
 SILVAs taxonomy databases: --> https://www.arb-silva.de/download/archive/qiime/
-
-
+#
 # How It Works
 
 ### OTU PICKING
