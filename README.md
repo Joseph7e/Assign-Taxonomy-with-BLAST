@@ -15,18 +15,18 @@ Many output files are generated. Several of which can be directly imported into 
 tested with Python 3.4.3
 
 modules: Biopython
-### For computing otus
+### Programs for computing otus (currently required)
 pick_otus.py
 available here: --> http://qiime.org/scripts/pick_otus.html
 #### other options coming soon
 
-### Databases
+### Databases (not required)
 ncbi's nt database: --> ftp://ftp.ncbi.nlm.nih.gov/blast/db/
 ####To download this database
 mkdir ncbi_nt_database && cd ncbi_nt_database && wget 'ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt*.gz' && tar -xvf nt*
 
 SILVA 18S databases: https://www.arb-silva.de/download/archive/qiime/
-### Taxonomy classifications
+### Taxonomy classifications (you will need one for your database)
 ncbi taxa dump: expanded and customized for this program: AVAILABLE ON THIS GIT FOR DOWNLOAD
 
 SILVAs taxonomy databases: --> https://www.arb-silva.de/download/archive/qiime/
@@ -41,10 +41,11 @@ Then gunzip the file.
 # How It Works
 
 ### OTU PICKING
-The first step is OTU picking. This is done to limit the number of time consuming blasts that need to be done and for prepping the sequences for qiime.
+The first step is OTU picking. This is done to limit the number of time consuming blasts that need to be done, and for prepping the sequences for qiime.
+
 The default is to use uclust via the otu_picking.py script, which provides the correctly formatted otu_seqs.txt file.
 
-Next the program will choose a seed sequence from the resulting OTU text file, this seed will be used to represent that OTU (currently selecting the largest sequence belonging to that OTU cluster) and is the only sequence that is blasted for that cluster.
+Next the program will choose a seed sequence from the resulting OTU text file info, this seed will be used to represent that OTU (currently selecting the largest sequence belonging to that OTU cluster) and is the only sequence that is blasted for that cluster.
 This often cuts the number of blasts down drastically. The original sequences can then be taxified based on the OTU seeds blast result.
 I can add an option to ignore otu picking if requested.
 
@@ -60,13 +61,13 @@ If you want to only consider the best blast hit, just set --hits_to_consider to 
 
 
 #### Best taxonomy based on percent identity
-The program provides another level of taxonomic certainty based on the blast percentage. For example, if the best blast hit is 90% you can be fairly confident that you cannot provide the species of the organisms but maybe you can provide the phylum. Right now there are three levels that you can set with the program, --cutoff_species, --cutoff_family, and --cutoff_phylum. The phylum level cutoff is also used as an ultimate filter for the blast hits.
+The program provides another level of taxonomic certainty based on the blast percentage. For example, if the best blast hit is 90% you can be fairly confident that you cannot provide the species of the organisms but maybe you can provide the phylum. Right now there are three levels that you can set with the program, --cutoff_species, --cutoff_family, and --cutoff_phylum. The phylum level cutoff is also used as an ultimate filter for the blast hits percent identity.
 
 If you want to only keep sequences that are identified to the species level, just set all cutoffs to '97' or '99'.
 
 If you want to leave it to the consensus taxonomy to decide 'best estimated taxonomy', set all three cutoffs low, maybe '80'.
 
-Note: The consensus taxonomy usually does a pretty good job of weeding out incorrect taxonomy, setting all these cutoff values to 80 actually provides pretty great taxonomy in a lot of cases. Especially if you set a high --hits_to_consider and --percent_sway
+Note: The consensus taxonomy usually does a pretty good job of weeding out incorrect taxonomy, setting all these cutoff values to 80 actually provides pretty great taxonomy in a lot of cases. Especially if you set a high --hits_to_consider and --percent_sway.
 
 #### Masking uncultured taxonomy
 By default the program will mask blast hits that have a taxonomic assignment of uncultured, or unclassified. These hits will only be considered as a last resort.
