@@ -20,13 +20,13 @@ other options coming soon
 #
 ### Databases (use one of these or one of your own)
 ncbi's nt database: --> ftp://ftp.ncbi.nlm.nih.gov/blast/db/
-#####To download this database
+#####To download this database copy and paste the line below (it will take a bit)
 mkdir ncbi_nt_database && cd ncbi_nt_database && wget 'ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt*.gz' && tar -xvf nt*
 #
 SILVA 18S databases: https://www.arb-silva.de/download/archive/qiime/
 #
 ### Taxonomy classifications (you will need one for your database)
-Customized taxonomy database for ncbi: --> http://cobb.unh.edu/ncbi_taxonomy_expanded.tsv.gz (make sure to gunzip it)
+Customized ncbi taxonomy database for this script: --> http://cobb.unh.edu/ncbi_taxonomy_expanded.tsv.gz (make sure to gunzip it)
 #
 SILVAs taxonomy databases: --> https://www.arb-silva.de/download/archive/qiime/
 #
