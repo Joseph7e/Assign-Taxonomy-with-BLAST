@@ -11,7 +11,9 @@ Many output files are generated. Several of which can be directly imported into 
 # Dependencies
 ###Python3
 tested with Python 3.4.3
-modules: Biopython
+
+
+modules: Biopython, argsparse
 #
 ### Programs for computing otus (currently required)
 pick_otus.py: available here: --> http://qiime.org/scripts/pick_otus.html
