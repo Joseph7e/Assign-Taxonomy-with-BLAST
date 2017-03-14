@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #Author: Joseph Sevigny
 #Affiliation: Hubbard Center for Genome Studies, University of New Hampshire
-#Date: 03/14/2017
+#Date: 02/23/2017
 
 import sys, re, os, subprocess, argparse
 from Bio import SeqIO
@@ -184,18 +184,25 @@ if not args.blast_file and not args.otu_file:
 
 ###do_blast
 def do_blast(query, database, blast_output):
+
     '''performs blasts and returns the results'''
     custom_blast_format = '6 qseqid qlen sseqid pident length qstart qend sstart send evalue bitscore staxids'
     #db_command = ["makeblastdb", "-in", subject, "-dbtype", "nucl", "-out", "temp_db"] #command to construct database
     #sd = subprocess.Popen(db_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE); sd.communicate()
     blast_command = ["blastn", "-query", query, "-db", database , "-num_threads", "48", "-evalue", args.blast_evalue, "-out", blast_output, "-outfmt", custom_blast_format] #command to complete blastn
     sp = subprocess.Popen(blast_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)#blast = sp.communicate()
+    err = sp.stderr.read()
+    if err:
+        print (err)
+        print ('ERROR: with blast above')
+        sys.exit()
     sp.communicate()
+
 
 if args.blast_file == None:
     if args.verbose:
         print ('Running blast on OTU seeds (this step takes the longest, maybe run overnight')
-    blast_file = 'otu_seqs_blast.tsv'
+    blast_file = outdir + 'otu_seqs_blast.tsv'
     do_blast(otu_sequences_output,args.blast_database,blast_file)
 else:
     blast_file = args.blast_file
