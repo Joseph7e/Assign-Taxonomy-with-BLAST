@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #Author: Joseph Sevigny
 #Affiliation: Hubbard Center for Genome Studies, University of New Hampshire
-#Date: 02/23/2017
+#Date: 03/14/2017
 
 import sys, re, os, subprocess, argparse
 from Bio import SeqIO
