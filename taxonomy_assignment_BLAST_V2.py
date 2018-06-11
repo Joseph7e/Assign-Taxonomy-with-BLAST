@@ -1,7 +1,7 @@
 #!/mnt/lustre/software/linuxbrew/colsa/bin/python3
 #Author: Joseph Sevigny
 #Affiliation: Hubbard Center for Genome Studies, University of New Hampshire
-#Date: 03/15/2017
+#Date: 06/11/2018
 
 import sys, re, os, subprocess, argparse
 from Bio import SeqIO
