@@ -30,6 +30,20 @@ SILVA 18S databases: https://www.arb-silva.de/download/archive/qiime/
 ### Taxonomy classifications (you will need one for your database)
 Customized ncbi taxonomy database for this script: --> http://cobb.unh.edu/ncbi_taxonomy_expanded.tsv.gz (make sure to gunzip it)
 
+##### Constructing an updated taxonomy database.
+
+Locate and download the latest NCBI taxonomy database. Link updated March 07, 2019
+```
+mkdir ncbi_taxonomy/ && cd ncbi_taxonomy/
+wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/new_taxdump/new_taxdump.tar.gz
+tar xvzf *.tar.gz
+```
+You will need the names and nodes file to construct the expanded taxonomy lookup
+```
+python3 genbank_nodes_and_names_to_taxonomy.py  names.dmp nodes.dmp
+```
+
+
 SILVAs taxonomy databases: --> https://www.arb-silva.de/download/archive/qiime/
 #
 # How It Works
