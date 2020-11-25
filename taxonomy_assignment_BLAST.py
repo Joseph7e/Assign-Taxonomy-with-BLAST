@@ -67,18 +67,13 @@ os.mkdir(outdir)
 taxonomy_assignment_outfile = outdir + 'taxonomy_assignment_per_sequence.tsv'
 log_file_handle = open(outdir + 'log_file.txt','w')
 taxonomy_assignment_seven_levels_outfile = outdir + 'taxonomy_assignment_per_sequence_eight_levels.tsv'
-#config_out_handle = open(outdir + 'config_file.txt','w')
-
-## DONE
+#config_out_handle = open(outdir + 'config_file.txt','w') # might add support for this in the future.
 
 def log_and_print(statement, log_file_name_handle=log_file_handle, print_bool=args.verbose):
     ''' takes care of log creation and print statements'''
     if print_bool == True:
         print (statement)
     log_file_name_handle.writelines(statement+'\n')
-
-
-
 
 
 log_and_print('####VERBOSE OPTION GIVEN\n')
@@ -103,11 +98,7 @@ log_and_print('BLAST threads: ' +  args.blast_threads)
 log_and_print('NCBI flag?: ' +  str(args.ncbi_nt))
 log_and_print('Output dir: ' +  outdir)
 log_and_print('Param file: ' +  str(args.config_file))
-
-
-
 log_and_print('\n###Program Start\n')
-
 
 ###INFO FOR SILVA 128 99 OTUS all levels
 taxonomy_categories = ['superkingdom', 'subkingdom', 'sub_subkingdom', 'kingdom', 'tmp1', 'tmp2', 'phylum', 'class', 'family', 'genus', 'species', 'tmp3', 'tmp4','tmp5', 'tmp6']
