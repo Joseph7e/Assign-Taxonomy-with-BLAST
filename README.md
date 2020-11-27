@@ -3,8 +3,7 @@ This program was primarily designed for the taxonomic assignment of amplicon seq
 Many output files are generated, several of which can be directly imported into qiime or other common workflows.
 
 # Dependencies
-###Python3
-tested with Python 3.4.3
+Python3 v3.4.3+   
 modules: Biopython, argsparse
 
 ## Compute ASVs/OTUs (optional)
