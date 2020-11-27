@@ -1,63 +1,52 @@
 # Assign-Taxonomy-with-BLAST
-This program was primarily designed for the taxonomic assignment of amplicon sequence variants (ASVs), but it works with any sequence data.
-
-Many output files are generated. Several of which can be directly imported into qiime or other common workflows.
-
+This program was primarily designed for the taxonomic assignment of amplicon sequence variants (ASVs), but it works with any sequence data in FASTA format.
+Many output files are generated, several of which can be directly imported into qiime or other common workflows.
 
 # Dependencies
 ###Python3
 tested with Python 3.4.3
-
-
 modules: Biopython, argsparse
-#
-### Programs for computing otus (currently required)
-pick_otus.py: available here: --> http://qiime.org/scripts/pick_otus.html
 
-other options coming soon
-#
-### Databases (use one of these or one of your own)
-ncbi's nt database: --> ftp://ftp.ncbi.nlm.nih.gov/blast/db/
+# Compute ASVs/OTUs (optional)
+If your starting data is fastq data from an amplicon based experiment you will need to compute ASVs/OTUs prior to running this program. Here are some great options.
+dada2 - https://benjjneb.github.io/dada2/tutorial.html
+qiime2 -  
+mothur - 
+
+# Prepare sequence database and taxonomic lookup
+ncbi's nt database - ftp://ftp.ncbi.nlm.nih.gov/blast/db/
+```bash
 #####To download this database copy and paste the line below (it will take a bit)
-mkdir ncbi_nt_database && cd ncbi_nt_database && wget 'ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt*.gz' && tar -xvf nt*
+mkdir ncbi_nt_database && cd ncbi_nt_database
+wget 'ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt*.gz'
+tar -xvf nt*
+```
 
-SILVA 18S databases: https://www.arb-silva.de/download/archive/qiime/
-#
-### Taxonomy classifications (you will need one for your database)
-Customized ncbi taxonomy database for this script: --> http://cobb.unh.edu/ncbi_taxonomy_expanded.tsv.gz (make sure to gunzip it)
+SILVA ssuRNA sequence and taxonomy database: https://www.arb-silva.de/download/archive/qiime/
 
-##### Constructing an updated taxonomy database.
+##### Constructing an updated taxonomy database for use with NCBI nt.
 
-Locate and download the latest NCBI taxonomy database. Link updated March 07, 2019
+Locate and download the latest NCBI taxonomy database. 
+You will need the names and nodes file to construct the expanded taxonomy lookup.
+Link updated December, 2020
+
 ```
 mkdir ncbi_taxonomy/ && cd ncbi_taxonomy/
 wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/new_taxdump/new_taxdump.tar.gz
 tar xvzf *.tar.gz
 ```
-You will need the names and nodes file to construct the expanded taxonomy lookup
+
+Expand the taxonomic lineages into a simplified tsv lookup.
 ```
 python3 genbank_nodes_and_names_to_taxonomy.py  names.dmp nodes.dmp
 ```
 
 
-SILVAs taxonomy databases: --> https://www.arb-silva.de/download/archive/qiime/
-#
 # How It Works
-
-### OTU picking
-The first step is OTU picking. This is done to limit the number of time consuming blasts that need to be done, and for prepping the sequences for qiime.
-
-The default is to use uclust via the otu_picking.py script, which provides the correctly formatted otu_seqs.txt file.
-
-Next the program will choose a seed sequence from the resulting OTU text file info, this seed will be used to represent that OTU (currently selecting the largest sequence belonging to that OTU cluster) and is the only sequence that is blasted for that cluster.
-This often cuts the number of blasts down drastically. The original sequences can then be taxified based on the OTU seeds blast result.
-I can add an option to ignore otu picking if requested.
-
-### Taxonomy Assignment with BLAST
 
 #### Consensus assignment
 Rather than relying on a single blast hit the program takes the top X (user defined with --hits_to_consider) blast hits for each sequence.
-It then computes the classification for each of these blast hits and determines taxonomy for the OTU based on the best consensus taxonomy. i.e. If all ten blast hits agree on the same taxonomy than it will give the value to the species level, however if they only agree to the family level then it will stop there.
+It then computes the classification for each of these blast hits and determines taxonomy for the query sequence based on the best consensus taxonomy. i.e. If all ten blast hits agree on the same taxonomy than it will give the value to the species level, however if they only agree to the family level then it will stop there.
 
 This aspect has many options, including setting the maximum number of blast hits to consider and the percent sway from the best blast hit. Blast hits are not all treated the same. If your blast provided 10 blast hits but only 5 of them are within '--percent_sway' the others will not be considered. For example, if one blast hit has a percent identity of 99% while the others are only 95%, only the top hit will be considered (unless of course you set the --percent_sway option to 4.0 or above). The default --percent_sway value is 0.5, this will gather very similiar hits and ignore those that are less similiar.
 
