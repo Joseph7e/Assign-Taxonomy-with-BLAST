@@ -1,11 +1,7 @@
 # Assign-Taxonomy-with-BLAST
-This script is used for otu clustering, blasting, and ultimately, assigning taxonomy. All steps are optional and customizable.
+This program was primarily designed for the taxonomic assignment of amplicon sequence variants (ASVs), but it works with any sequence data.
 
-It can be used for any multi-fasta and should work on any database, including custom ones or ncbi's nt database.
-
-A path to taxonomy classifications for the database is required but several have already been precomputed and are available here. If you would like me to construct a taxonomy classification for your database or instructions on how to do so. Email me.
-
-Many output files are generated. Several of which can be directly imported into qiime or qiime2 for visualization of taxonomy or other analyses.
+Many output files are generated. Several of which can be directly imported into qiime or other common workflows.
 
 
 # Dependencies
