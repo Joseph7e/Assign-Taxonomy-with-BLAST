@@ -8,13 +8,13 @@ tested with Python 3.4.3
 modules: Biopython, argsparse
 
 ## Compute ASVs/OTUs (optional)
-If your starting data is fastq data from an amplicon based experiment you will need to compute ASVs/OTUs prior to running this program. Here are some great options.
-dada2 - https://benjjneb.github.io/dada2/tutorial.html
-qiime2 -  
-mothur - 
+If your starting data is fastq data from an amplicon based experiment you will need to compute ASVs/OTUs prior to running this program. Here are some great options.  
+dada2 - https://benjjneb.github.io/dada2/tutorial.html  
+qiime2 -    
+mothur -   
 
 ## Prepare sequence database and taxonomic lookup
-ncbi's nt database - ftp://ftp.ncbi.nlm.nih.gov/blast/db/
+ncbi's nt database - ftp://ftp.ncbi.nlm.nih.gov/blast/db/  
 ```bash
 #####To download this database copy and paste the line below (it will take a bit)
 mkdir ncbi_nt_database && cd ncbi_nt_database
@@ -22,13 +22,13 @@ wget 'ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt*.gz'
 tar -xvf nt*
 ```
 
-SILVA ssuRNA sequence and taxonomy database: https://www.arb-silva.de/download/archive/qiime/
+SILVA ssuRNA sequence and taxonomy database: https://www.arb-silva.de/download/archive/qiime/  
 
 ##### Constructing an updated taxonomy database for use with NCBI nt.
 
-Locate and download the latest NCBI taxonomy database. 
-You will need the names and nodes file to construct the expanded taxonomy lookup.
-Link updated December, 2020
+Locate and download the latest NCBI taxonomy database.   
+You will need the names and nodes file to construct the expanded taxonomy lookup.  
+Link updated December, 2020  
 
 ```
 mkdir ncbi_taxonomy/ && cd ncbi_taxonomy/
@@ -45,22 +45,26 @@ python3 genbank_nodes_and_names_to_taxonomy.py  names.dmp nodes.dmp
 # How It Works
 
 #### Consensus assignment
-Rather than relying on a single blast hit the program takes the top X (user defined with --hits_to_consider) blast hits for each sequence.
-It then computes the classification for each of these blast hits and determines taxonomy for the query sequence based on the best consensus taxonomy. i.e. If all ten blast hits agree on the same taxonomy than it will give the value to the species level, however if they only agree to the family level then it will stop there.
+Rather than relying on a single blast hit the program takes the top X (user defined with --hits_to_consider) blast hits for each sequence.  
+It then computes the classification for each of these blast hits and determines taxonomy for the query sequence based on the best consensus taxonomy. i.e. If all ten blast hits agree on the same taxonomy than it will give the value to the species level, however if they only agree to the family level then it will stop there.  
 
-This aspect has many options, including setting the maximum number of blast hits to consider and the percent sway from the best blast hit. Blast hits are not all treated the same. If your blast provided 10 blast hits but only 5 of them are within '--percent_sway' the others will not be considered. For example, if one blast hit has a percent identity of 99% while the others are only 95%, only the top hit will be considered (unless of course you set the --percent_sway option to 4.0 or above). The default --percent_sway value is 0.5, this will gather very similiar hits and ignore those that are less similiar.
+This aspect has many options, including setting the maximum number of blast hits to consider and the percent sway from the best blast hit. Blast hits are not all treated the same. 
+If your blast provided 10 blast hits but only 5 of them are within '--percent_sway' the others will not be considered.   
+For example, if one blast hit has a percent identity of 99% while the others are only 95%, only the top hit will be considered (unless of course you set the --percent_sway option to 4.0 or above). The default --percent_sway value is 0.5, this will gather very similiar hits and ignore those that are less similiar.
 
-If you want to only consider the best blast hit, just set --hits_to_consider to '1'.
+If you want to only consider the best blast hit, just set --hits_to_consider to '1'.  
 
 
 #### Best taxonomy based on percent identity
-The program provides another level of taxonomic certainty based on the blast percentage. For example, if the best blast hit is 90% you can be fairly confident that you cannot provide the species of the organisms but maybe you can provide the phylum. Right now there are three levels that you can set with the program, --cutoff_species, --cutoff_family, and --cutoff_phylum. The phylum level cutoff is also used as an ultimate filter for the blast hits percent identity.
+The program provides another level of taxonomic certainty based on the blast percentage. For example, if the best blast hit is 90% you can be fairly confident that you cannot provide the species of the organisms but maybe you can provide the phylum. Right now there are three levels that you can set with the program, --cutoff_species, --cutoff_family, and --cutoff_phylum. The phylum level cutoff is also used as an ultimate filter for the blast hits percent identity.  
 
-If you want to only keep sequences that are identified to the species level, just set all cutoffs to '97' or '99'.
+If you want to only keep sequences that are identified to the species level, just set all cutoffs to '97' or '99'.  
 
-If you want to leave it to the consensus taxonomy to decide 'best estimated taxonomy', set all three cutoffs low, maybe '80'.
+If you want to leave it to the consensus taxonomy to decide 'best estimated taxonomy', set all three cutoffs low, maybe '80'.  
 
-Note: The consensus taxonomy usually does a pretty good job of weeding out incorrect taxonomy, setting all these cutoff values to 80 actually provides pretty great taxonomy in a lot of cases. Especially if you set a high --hits_to_consider and --percent_sway.
+These threshold values were arbitrarily chosen in line with diverse literature sources and investigations that were mostly based on mock communities of selected taxa (Brown et al., 2015; Holovachov 2016; Leasi et al., 2018).  
+
+Note: The consensus taxonomy usually does a pretty good job of weeding out incorrect taxonomy, setting all these cutoff values to 80 actually provides pretty great taxonomy in a lot of cases. Especially if you set a high --hits_to_consider and --percent_sway.  
 
 #### Masking uncultured taxonomy
 By default the program will mask blast hits that have a taxonomic assignment of uncultured, or unclassified. These hits will only be considered as a last resort.
@@ -71,13 +75,11 @@ You have the option to set the minimum length coverage for the blast hit (define
 
 
 #### You already did YOUR OWN BLAST?? We will import that and save you the step. Just make sure the format is right.
-use this format --> -outfmt '6 qseqid qlen sseqid pident length qstart qend sstart send evalue bitscore staxids'
-If running your own blast command make sure you run it with the out_seqs.fasta file. I have not added an option to input seqs.fna blast directly into qiime yet… but will if requested.
+use this format --> -outfmt '6 qseqid qlen sseqid pident length qstart qend sstart send evalue bitscore staxids'  
+If running your own blast command make sure you run it with the out_seqs.fasta file. I have not added an option to input seqs.fna blast directly into qiime yet… but will if requested.  
 
 
-#USAGE
-python3 taxonomy_assignment_BLAST.py [options] sequence_file blast_database taxonomy_file  
-### To see all options
+# USAGE
 ```python3 taxonomy_assignment_BLAST.py -h  
 
 usage: taxonomy_assignment_BLAST_V2.py [-h] [-v]  
