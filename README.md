@@ -78,7 +78,7 @@ If running your own blast command make sure you run it with the out_seqs.fasta f
 #USAGE
 python3 taxonomy_assignment_BLAST.py [options] sequence_file blast_database taxonomy_file  
 ### To see all options
-python3 taxonomy_assignment_BLAST.py -h  
+```python3 taxonomy_assignment_BLAST.py -h  
 
 usage: taxonomy_assignment_BLAST_V2.py [-h] [-v]  
                                        [--cutoff_species CUTOFF_SPECIES]  
@@ -149,4 +149,4 @@ optional arguments:
   --config_file CONFIG_FILE  
                         NOT YET IMPLEMENTED, an optional parameters file, any  
                         arguments in this file will override other options  
-                        (default: None)  
+                        (default: None)  ```
