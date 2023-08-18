@@ -35,7 +35,7 @@ wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/new_taxdump/new_taxdump.tar.gz
 tar xvzf *.tar.gz
 ```
 
-Expand the taxonomic lineages into a simplified tsv lookup.
+Expand the taxonomic lineages into a simplified tsv lookup. This will create a `expanded_ncbi_taxonomy.tsv` file in your current directory.
 ```
 python3 genbank_nodes_and_names_to_taxonomy.py  names.dmp nodes.dmp
 ```
@@ -81,7 +81,7 @@ If running your own blast command make sure you run it with the out_seqs.fasta f
 # USAGE
 ```python3 taxonomy_assignment_BLAST.py -h  
 
-usage: taxonomy_assignment_BLAST_V2.py [-h] [-v]  
+usage: taxonomy_assignment_BLAST.py [-h] [-v]  
                                        [--cutoff_species CUTOFF_SPECIES]  
                                        [--cutoff_family CUTOFF_FAMILY]  
                                        [--cutoff_phylum CUTOFF_PHYLUM]  
@@ -96,11 +96,12 @@ usage: taxonomy_assignment_BLAST_V2.py [-h] [-v]
                                        [--blast_file BLAST_FILE] [--ncbi_nt]  
                                        [--output_dir OUTPUT_DIR]  
                                        [--config_file CONFIG_FILE]  
-                                       sequence_file tax_file  
+                                       sequence_file blast_database tax_file  
 
 positional arguments:  
   sequence_file         seqs.fna file from qiime or any multifasta, just make  
-                        sure header has unique id with a space  
+                        sure header has unique id with a space
+  blast_database        path to blast database, be sure to run makeblastdb on the database first, type in ignore if precomputed blast is given
   tax_file              path to silva or customized blast database taxonomy  
                         file  
   
